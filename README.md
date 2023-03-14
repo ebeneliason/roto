@@ -21,7 +21,7 @@ Consider using Roto when:
 3. Generating your graphics procedurally would be more efficient than achieving the same results by hand.
 
 Rendering pre-drawn image sequences is significantly faster on device than rendering graphics procedurally
-using the Playdate APIs. However, if rendering the graphics procedurally is faster (or if you've _already_
+using the Playdate APIs. However, if _generating_ the graphics procedurally is easier (or if you've _already_
 implemented your sprites using the drawing APIs), Roto can make the process of transitioning to pre-rendered
 sprite sheets easy.
 
@@ -101,15 +101,15 @@ local mySprite = MySprite()
 local roto = Roto(mySprite)
 
 -- Start capturing frames, perhaps in response to a button press or state change event
-roto.startTracing()
+roto:startTracing()
 
 -- Let some number of frames pass…
 
 -- Stop capturing frames, perhaps in response to a button press, event or timer
-roto.stopTracing()
+roto:stopTracing()
 
 -- Save a sprite sheet containing the captured images
-roto.saveAsMatrix("~/Desktop")
+roto:saveAsMatrix("~/Desktop")
 
 ```
 
