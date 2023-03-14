@@ -43,9 +43,9 @@ instance "traces" the graphics of your sprite each frame.
     import "Roto"
     ```
 
-### Using (`toybox.py`)[https://toyboxpy.io/]
+### Using [`toybox.py`](https://toyboxpy.io/)
 
-1.  If you haven't already, download and install (`toybox.py`)[https://toyboxpy.io/].
+1.  If you haven't already, download and install [`toybox.py`](https://toyboxpy.io/).
 2.  Navigate to your project folder in a Terminal window.
 
     ```console
@@ -162,7 +162,7 @@ save the resulting image.
 roto:saveAsMatrix("~/Desktop/")
 ```
 
-The file will be named "MySprite-table-<w>-<h>.png" where _w_ and _h_ are the width and height of each
+The file will be named `MySprite-table-<w>-<h>.png` where _w_ and _h_ are the width and height of each
 frame cell. Note that if the sizes of the individual captured frames are not all equal to the cell size
 of the matrix image, the smaller frames will be centered within their respective cells.
 
@@ -184,7 +184,7 @@ roto:saveAsMatrix("~/Desktop/", "MySprite", 10) -- 10 frames per row
 ### Saving Image Sequences
 
 If you prefer, you can also save your captured frames as a numbered sequence of images. All resulting
-image files will have names of the form "MySprite-table-<N>.png", where _N_ is the frame number.
+image files will have names of the form `MySprite-table-<N>.png`, where _N_ is the frame number.
 Frame numbers will be padded with leading zeros according to the total number of frames.
 
 ```lua
