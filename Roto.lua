@@ -55,26 +55,26 @@ function Roto:init(sprite)
     -- whether we're actively capturing frames from the sprite
     self.tracing = false
 
-    -- hijack the sprite's draw function
-    sprite._draw = sprite.draw
-    sprite.draw = drawHijack
+    -- wrap the sprite's draw function
+    sprite._roto_wrapped_draw = sprite.draw
+    sprite.draw = rotoDrawWrapper
     sprite.roto = self
 
     -- add some conveneinces to the sprite for controlling tracing
     sprite.startTracing = function(self, numFrames)
         self.roto:startTracing(numFrames)
-	end
+    end
 
-	sprite.stopTracing = function(self)
+    sprite.stopTracing = function(self)
         self.roto:stopTracing()
-	end
+    end
 end
 
 -- This function gets "installed" on the sprite passed to `Roto:init`,
 -- overriding its provided `draw` function. As such all references to `self`
 -- actually pertain the traced sprite, not to the Roto instance.
 -- @param self The sprite instance being drawn
-function drawHijack(self)
+function rotoDrawWrapper(self)
 	if self.roto.tracing then
 		-- keep track of the largest and smallest frame size we capture
 		local w, h = self:getSize()
@@ -87,7 +87,7 @@ function drawHijack(self)
 		local frame = gfx.image.new(w, h)
 		self.roto.frames[#self.roto.frames+1] = frame
 		gfx.lockFocus(frame)
-			self._draw(self)
+			self._roto_wrapped_draw(self)
 		gfx.unlockFocus()
 
 		-- draw the captured image into the sprite itself
@@ -102,7 +102,7 @@ function drawHijack(self)
 		end
 	else
 		-- if we're not actively tracing, just draw normally
-		self._draw(self)
+		self._roto_wrapped_draw(self)
 	end
 end
 
