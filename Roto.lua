@@ -34,7 +34,7 @@ class('Roto').extends(object)
 
 -- Create a new Roto capable of tracing frames from the provided sprite to save to file
 function Roto:init(sprite)
-    FrameScore.super.init(self)
+    Roto.super.init(self)
 
     -- ensure we don't wind up used in a build on device
     assert(playdate.isSimulator, "Roto should only be used with the simulator.")
